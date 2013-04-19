@@ -1,0 +1,195 @@
+set nocompatible
+source $VIMRUNTIME/vimrc_example.vim
+source $VIMRUNTIME/mswin.vim
+behave mswin
+
+" -------------------- Vundle Configuration	--------------------
+filetype off
+
+if has("win32")
+    set rtp+=$VIM/vimfiles/bundle/vundle/
+    call vundle#rc('$VIM/vimfiles/bundle/')
+else
+    set rtp+=~/.vim/bundle/vundle/
+    call vundle#rc()
+endif
+
+Bundle 'gmarik/vundle'
+
+" vim-scripts repos
+
+" 自动弹出补全提示
+Bundle 'AutoComplPop'
+
+
+Bundle 'Color-Scheme-Explorer'
+
+" 彩色状态栏
+Bundle 'https://github.com/sangwich/colorful-statusline'
+
+" 光标定位神器
+Bundle 'EasyMotion'
+let g:EasyMotion_leader_key = '<space>'
+let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz'
+
+
+" 快速打开最近打开的文件
+Bundle 'mru.vim'
+map <leader>f :MRU<CR>
+
+" 模糊查找文件、tags等内容
+Bundle 'L9'
+Bundle 'FuzzyFinder'
+
+" Python语法检测插件
+Bundle 'pyflakes'
+
+" Python自动补全
+Bundle 'Pydiction'
+if has("win32")
+    let g:pydiction_location = '$VIM/vimfiles/bundle/Pydiction/complete-dict'
+else
+    let g:pydiction_location = '~/.vim/bundle/Pydiction/complete-dict'
+endif
+
+" Buffer管理插件
+Bundle 'minibufexplorerpp'
+
+" ----------------------- Vundle End ---------------------------
+
+" {{{ Win平台下窗口全屏组件 gvimfullscreen.dll
+" Alt + Enter 全屏切换
+" Vim启动的时候自动使用当前颜色的背景色以去除Vim的白色边框
+if has('gui_running') && has('gui_win32') && has('libcall')
+    let g:MyVimLib = 'gvimfullscreen.dll'
+
+    function! ToggleFullScreen()
+        call libcall(g:MyVimLib, 'ToggleFullScreen', 1)
+    endfunction
+    "映射 Alt+Enter 切换全屏vim
+    map <a-enter> <esc>:call ToggleFullScreen()<cr>
+endif
+" }}}
+
+" 设置控制台颜色
+set t_Co=256
+" 设置主题
+colorscheme darkspectrum
+" 设置启动窗口大小
+set lines=35 columns=118
+
+" 检测文件类型
+filetype on
+" 检测文件类型插件
+filetype plugin indent on
+
+" 设置工作目录为当前编辑文件目录
+set bsdir=buffer
+set autochdir
+
+" 编码设置
+set enc=utf-8
+set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
+
+" 语言设置
+set langmenu=zh_CN.UTF-8
+language message zh_CN.UTF-8
+set helplang=cn
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
+
+"禁止生成备份文件
+set nobackup
+
+"搜索忽略大小写
+set ignorecase 
+
+"搜索逐字符高亮
+set incsearch
+
+"命令行tab补全方式改为列表式
+set wildmode=list:full
+
+"行内替换
+set gdefault
+
+"始终显示行号
+set nu!
+
+"显示光标的坐标
+set ruler
+
+"设置Tab键的宽度
+set shiftwidth=4
+set tabstop=4
+
+"将Tab键更改为四个空格
+set expandtab
+
+" 设置按BackSpace的时候可以一次删除掉4个空格
+set softtabstop=4
+
+" 智能自动缩进
+set smartindent
+"显示括号配对情况
+set showmatch
+
+" 显示Tab符
+set list
+set listchars=tab:\|\ ,trail:.,extends:>,precedes:<
+
+"这里是为了php的编码规范需求，所以也可以将文件只限定为php生效
+"autocmd FileType php set expandtab
+
+"根据编辑模式更改输入法光标颜色，同时禁用IME自动切换
+if has('multi_byte_ime')
+    hi Cursor guifg=bg guibg=Orange gui=NONE
+    hi CursorIM guifg=NONE guibg=Skyblue gui=NONE
+    set iminsert=0 imsearch=0
+endif
+
+"禁用自动缩进
+"set noautoindent
+
+"与Windows共享剪贴板
+set clipboard+=unnamed
+
+if !exists('g:VimrcIsLoad') && has("win32")
+    set termencoding=chinese
+    set fileencodings=ucs-bom,utf-8,cp936,cp950,latin1
+    set gfn=Consolas:h10
+    set gfw=新宋体:h10
+    set linespace=0
+    " 解决自动换行格式下, 如高度在折行之后超过窗口高度结果这一行看不到的问题
+    set display=lastline
+    language messages zh_CN.UTF-8
+    set langmenu=zh_CN.UTF-8
+    set guioptions-=m " 隐藏菜单栏
+    set guioptions-=T " 隐藏工具栏
+    "set guioptions-=L " 隐藏左侧滚动条
+    "set guioptions-=r " 隐藏右侧滚动条
+    "set guioptions-=b " 隐藏底部滚动条
+    "set showtabline=0 " Tab栏
+    " 显示状态栏 (默认值为 1, 无法显示状态栏)
+    set laststatus=2
+    " 设置在状态行显示的信息
+    "set statusline=\ %<%F[%1*%M%*%n%R%H]%=\ %y\ %0(%{&fileformat}\ [%{(&fenc==\"\"?&enc:&fenc).(&bomb?\",BOM\":\"\")}]\ %c:%l/%L%)
+else
+    set gfn=Monaco:h12
+endif
+
+" 插入模式下上下左右移动光标
+
+inoremap <a-h> <left>
+inoremap <a-l> <right>
+inoremap <a-j> <c-o>gj
+inoremap <a-k> <c-o>gk
+
+"编辑vimrc之后，重新加载
+if has("win32")
+    autocmd! bufwritepost _vimrc source $VIM/_vimrc
+else
+    autocmd! bufwritepost .vimrc source ~/.vimrc
+endif
+
+
