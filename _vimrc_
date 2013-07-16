@@ -35,6 +35,7 @@ let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz'
 
 " 快速打开最近打开的文件
 Bundle 'mru.vim'
+"定义\f为快速打开MRU的快捷键
 map <leader>f :MRU<CR>
 
 " 模糊查找文件、tags等内容
@@ -157,8 +158,10 @@ set clipboard+=unnamed
 if !exists('g:VimrcIsLoad') && has("win32")
     set termencoding=chinese
     set fileencodings=ucs-bom,utf-8,cp936,cp950,latin1
-    set gfn=Consolas:h10
-    set gfw=新宋体:h10
+    "设置Win32下的字体显示
+    set gfn=DejaVu_Sans_Mono:h10
+    "set gfn=Source_Code_Pro_Semibold:h10
+    set gfw=新宋体:h11
     set linespace=0
     " 解决自动换行格式下, 如高度在折行之后超过窗口高度结果这一行看不到的问题
     set display=lastline
