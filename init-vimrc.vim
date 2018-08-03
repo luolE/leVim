@@ -13,7 +13,9 @@ colorscheme BusyBee
 set autochdir
 
 " 设置启动窗口大小
-set lines=35 columns=118
+if has("win32")
+    set lines=35 columns=118
+endif
 
 " 检测文件类型
 filetype on
@@ -160,15 +162,25 @@ set backup
 " 指定备份文件辍
 set backupext=.vbak
 " 备份目录
+if !isdirectory($VIMFILES.'/_backup_file')
+    call mkdir($VIMFILES.'/_backup_file')
+endif
 set backupdir=$VIMFILES/_backup_file
 
 " 重启后撤销历史可用 persistent undo 
+if !isdirectory($VIMFILES.'/_undo_file')
+    call mkdir($VIMFILES.'/_undo_file')
+endif
+
 set undofile
 set undodir=$VIMFILES/_undo_file
 set undolevels=1000 "maximum number of changes that can be undone
 set undoreload=10000
 
 " 临时备份目录
+if !isdirectory($VIMFILES.'/_swap_file')
+    call mkdir($VIMFILES.'/_swap_file')
+endif
 set directory=$VIMFILES/_swap_file
 " ====================================================================
 
