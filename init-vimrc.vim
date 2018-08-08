@@ -12,9 +12,15 @@ colorscheme BusyBee
 " 自动切换当前目录
 set autochdir
 
-" 设置启动窗口大小
+" Windows GUI
 if has("win32")
+    " 设置启动窗口大小
     set lines=35 columns=118
+    
+    " 语言设置
+    set langmenu=zh_CN.UTF-8
+    language message zh_CN.UTF-8
+    set helplang=cn
 endif
 
 " 检测文件类型
@@ -27,10 +33,6 @@ filetype plugin indent on
 set enc=utf-8
 set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
 
-" 语言设置
-set langmenu=zh_CN.UTF-8
-language message zh_CN.UTF-8
-set helplang=cn
 
 " 设置中文编码后需重置菜单
 source $VIMRUNTIME/delmenu.vim
