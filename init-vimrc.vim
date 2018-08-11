@@ -24,7 +24,7 @@ if has("win32")
 endif
 
 " 检测文件类型
-filetype on
+filetype detect
 
 " 检测文件类型插件
 filetype plugin indent on
@@ -46,6 +46,10 @@ else
     call plug#begin('~/.vim/bundle/')
 endif
 
+" 控制台光标显示(I/N模式)插件
+Plug 'jszakmeister/vim-togglecursor'
+
+" 主题选择插件
 Plug 'Color-Scheme-Explorer'
 
 " git集成
@@ -142,19 +146,6 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 
 call plug#end()
 " ----------------------- Vundle End ---------------------------
-
-" 在代码保存时去除代码末尾的空格
-function! <SID>StripTrailingSpaces()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
-endfunction
-augroup strip_traling_spaces
-    autocmd!
-    autocmd FileType css,javascript,python autocmd BufWritePre <buffer> call <SID>StripTrailingSpaces() 
-augroup END
-
 
 
 

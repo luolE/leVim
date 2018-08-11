@@ -1,5 +1,8 @@
 " 编程常用技能包
 
+" F11 切换粘贴模式(粘贴代码不会缩进)
+set pastetoggle=<F11>
+
 " 自动添加文件头部
 function!  s:add_title()
     if &filetype == 'sh'
