@@ -55,6 +55,9 @@ Plug 'Color-Scheme-Explorer'
 " git集成
 Plug 'tpope/vim-fugitive'
 
+" 启动显示最近文件以及保存的Session(SSave/SLoad)
+Plug 'mhinz/vim-startify'
+
 " 模板插件
 Plug 'UltiSnips'
 
@@ -250,9 +253,3 @@ inoremap <a-l> <right>
 inoremap <a-j> <c-o>gj
 inoremap <a-k> <c-o>gk
 
-"编辑vimrc之后，重新加载
-"if has("win32")
-"    autocmd! bufwritepost _vimrc source $VIM/_vimrc
-"else
-"    autocmd! bufwritepost .vimrc source ~/.vimrc
-"endif
