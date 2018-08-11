@@ -11,7 +11,6 @@ augroup SPACEVIM_PYTHON
     autocmd!
     " Force indentation styles for python
     autocmd FileType python setlocal
-                \   foldmethod=indent
                 \   tabstop=4
                 \   shiftwidth=4
                 \   softtabstop=4
@@ -37,6 +36,7 @@ augroup END
 " python-mode {
     let g:pymode = 1
     let g:pymode_python = 'python3'
+    let g:pymode_folding = 0
     let g:pymode_lint = 0
     let g:pymode_lint_checkers = ['pyflakes']
     let g:pymode_trim_whitespaces = 0
