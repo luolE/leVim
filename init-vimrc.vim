@@ -90,7 +90,7 @@ nnoremap <C-P> :bp<CR>
 
 " 光标定位神器
 Plug 'easymotion/vim-easymotion'
-" let g:EasyMotion_leader_key = '<space>'
+let g:EasyMotion_leader_key = '<space>'
 let g:EasyMotion_keys = 'qwerasdfuiopjkl;'
 let g:EasyMotion_smartcase = 1
 "let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
@@ -104,7 +104,7 @@ map <Leader>. <Plug>(easymotion-repeat)
 " 快速打开最近打开的文件
 Plug 'mru.vim'
 "定义\f为快速打开MRU的快捷键
-map <leader>f :MRU<CR>
+map <leader><leader>f :MRU<CR>
 
 
 " 编程常用技能包
@@ -115,6 +115,9 @@ source $MYVIM/init-plug-ale.vim
 
 " Python语言配置
 source $MYVIM/init-plug-python.vim
+
+" 批量注释代码
+Plug 'scrooloose/nerdcommenter'
 
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -253,3 +256,15 @@ inoremap <a-l> <right>
 inoremap <a-j> <c-o>gj
 inoremap <a-k> <c-o>gk
 
+" 重置所有窗口布局为垂直分割
+nnoremap <F12> :windo wincmd H<CR>
+
+" 重定义窗口移动快捷键
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" 设置窗口分割方式
+"set splitbelow
+set splitright
