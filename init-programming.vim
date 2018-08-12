@@ -5,6 +5,8 @@ set pastetoggle=<F11>
 
 " 自动添加文件头部
 function!  s:add_title()
+    filetype detect
+
     if &filetype == 'sh'
         call setline(1,'#!/usr/bin/env bash')
         call append(line('.'), '')

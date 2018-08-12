@@ -24,9 +24,6 @@ if has("win32")
 endif
 
 " 检测文件类型
-filetype detect
-
-" 检测文件类型插件
 filetype plugin indent on
 
 " 编码设置
