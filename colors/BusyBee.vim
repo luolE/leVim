@@ -12,7 +12,7 @@ set t_Co=256
 let g:colors_name = "BusyBee"
 
 if has("gui_running")
-    Search term=reverse ctermfg=231 ctermbg=131
+    hi Search term=reverse ctermfg=231 ctermbg=131
 endif
 
 "hi IncSearch -- no settings --
