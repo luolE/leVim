@@ -1,5 +1,5 @@
 
-Plug 'pyflakes'
+Plug 'vim-scripts/pyflakes'
 Plug 'python-mode/python-mode'
 
 function! s:hi_over_length()

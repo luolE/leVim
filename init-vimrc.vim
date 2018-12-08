@@ -47,7 +47,7 @@ endif
 Plug 'jszakmeister/vim-togglecursor'
 
 " 主题选择插件
-Plug 'Color-Scheme-Explorer'
+Plug 'vim-scripts/Color-Scheme-Explorer'
 
 " git集成
 Plug 'tpope/vim-fugitive'
@@ -55,11 +55,16 @@ Plug 'tpope/vim-fugitive'
 " 启动显示最近文件以及保存的Session(SSave/SLoad)
 Plug 'mhinz/vim-startify'
 
-" 模板插件
-Plug 'UltiSnips'
-
-" 自动弹出补全提示
-Plug 'AutoComplPop'
+" 模板插件(ultisnips)
+" 自动弹出补全提示(AutoComplPop)
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'jordwalke/VimCompleteLikeAModernEditor'
+Plug 'jordwalke/AutoComplPop'
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<C-R>=UltiSnips#ExpandSnippet()"
 
 " Ctrl-P 一键搜索
 Plug 'ctrlpvim/ctrlp.vim'
@@ -97,12 +102,6 @@ map <Leader>k <Plug>(easymotion-k)
 map <Leader>l <Plug>(easymotion-lineforward)
 " 重复上一次操作, 类似repeat插件, 很强大
 map <Leader>. <Plug>(easymotion-repeat)
-
-" 快速打开最近打开的文件
-Plug 'mru.vim'
-"定义\f为快速打开MRU的快捷键
-map <leader><leader>f :MRU<CR>
-
 
 " 编程常用技能包
 source $MYVIM/init-programming.vim
