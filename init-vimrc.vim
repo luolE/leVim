@@ -13,7 +13,7 @@ colorscheme BusyBee
 set autochdir
 
 " Windows GUI
-if has("win32")
+if has("gui")
     " 设置启动窗口大小
     set lines=35 columns=118
     
