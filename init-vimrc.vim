@@ -33,8 +33,8 @@ set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
 
 " 设置中文编码后需重置菜单
 source $VIMRUNTIME/delmenu.vim
+omap <Leader>W <Plug>(easymotion-bd-W)
 source $VIMRUNTIME/menu.vim
-
 
 " ----------------------- Vundle End ---------------------------
 if has("win32")
@@ -87,8 +87,8 @@ endif
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 "设置切换Buffer快捷键"
-nnoremap <C-N> :bn<CR>
-nnoremap <C-P> :bp<CR>
+nnoremap <C-n> :bn<CR>
+nnoremap <C-p> :bp<CR>
 
 " 光标定位神器
 Plug 'easymotion/vim-easymotion'
@@ -96,12 +96,27 @@ let g:EasyMotion_leader_key = '<space>'
 let g:EasyMotion_keys = 'qwerasdfuiopjkl;'
 let g:EasyMotion_smartcase = 1
 "let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
-map <Leader>h <Plug>(easymotion-linebackward)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-map <Leader>l <Plug>(easymotion-lineforward)
-" 重复上一次操作, 类似repeat插件, 很强大
-map <Leader>. <Plug>(easymotion-repeat)
+" <Leader>f{char} to move to {char}
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+
+" s{char}{char} to move to {char}{char}
+nmap <Leader>s <Plug>(easymotion-overwin-f2)
+
+" Move to line
+map <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+
+nmap <Leader>w <Plug>(easymotion-bd-w)
+xmap <Leader>w <Plug>(easymotion-bd-w)
+omap <Leader>w <Plug>(easymotion-bd-w)
+
+nmap <Leader>W <Plug>(easymotion-bd-W)
+xmap <Leader>W <Plug>(easymotion-bd-W)
+omap <Leader>W <Plug>(easymotion-bd-W)
+
+map <Leader><Leader> <Plug>(easymotion-overwin-w)
+
 
 " 编程常用技能包
 source $MYVIM/init-programming.vim
@@ -117,7 +132,7 @@ Plug 'scrooloose/nerdcommenter'
 
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
     \ "Untracked" : "✭",
@@ -142,8 +157,8 @@ let NERDTreeWinSize=30
 " 显示书签列表
 let NERDTreeShowBookmarks=1
 " 改变nerdtree的箭头
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeDirArrowExpandable = '+'
+let g:NERDTreeDirArrowCollapsible = '-'
 
 
 call plug#end()
