@@ -33,7 +33,6 @@ set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
 
 " 设置中文编码后需重置菜单
 source $VIMRUNTIME/delmenu.vim
-omap <Leader>W <Plug>(easymotion-bd-W)
 source $VIMRUNTIME/menu.vim
 
 " ----------------------- Vundle End ---------------------------
